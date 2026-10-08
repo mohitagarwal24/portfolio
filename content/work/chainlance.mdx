@@ -1,0 +1,17 @@
+export const meta = {
+  code: "CL-09",
+  name: "ChainLance",
+  summary: "Freelancing with on-chain escrow, where AI agents check the work before payment is released.",
+  when: "ETHOnline 2025",
+  year: 2025,
+  crew: "Solo",
+  status: "Shipped",
+  domain: ["Web3", "AI"],
+  stack: ["Solidity", "Fetch.ai agents", "React", "Supabase"],
+  links: { repo: "https://github.com/mohitagarwal24/ChainLance" },
+  order: 9,
+  cover: { art: "network" },
+  gallery: [{ src: "/work/chainlance/diagram-sequence.webp", caption: "Job, escrow, delivery and verification flow.", kind: "diagram" }],
+};
+
+Five contracts on Sepolia handle escrow, reputation and agent verification. Fetch.ai agents review each deliverable and report back through an oracle before funds move.

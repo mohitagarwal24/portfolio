@@ -1,0 +1,16 @@
+export const meta = {
+  code: "SV-11",
+  name: "Satellite Property Valuation",
+  summary: "Predicting house prices from listing data plus satellite images of the neighbourhood.",
+  when: "Dec 2025 – Jan 2026",
+  year: 2025,
+  crew: "Solo",
+  status: "Research",
+  domain: ["AI"],
+  stack: ["PyTorch", "ResNet18", "XGBoost", "Grad-CAM"],
+  links: { repo: "https://github.com/mohitagarwal24/satval" },
+  order: 11,
+  cover: { art: "tiles" },
+};
+
+ResNet18 embeddings of map tiles are combined with tabular features in a stacked ensemble. R² went from 0.8975 (XGBoost alone) to 0.9101, and RMSE dropped 4.4%. Grad-CAM shows which parts of each image the model looked at.

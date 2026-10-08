@@ -1,0 +1,41 @@
+export const meta = {
+  code: "GC-02",
+  name: "GitCraft",
+  summary: "Connect a GitHub repo and get documentation that keeps itself up to date: specs, decision records and release notes, written into Craft.",
+  when: "Dec 2025",
+  year: 2025,
+  crew: "Solo",
+  status: "Winner",
+  award: "1st · Craft Winter Challenge 2025",
+  domain: ["AI", "Web"],
+  stack: ["Node", "Express", "Next.js", "MCP", "Claude / Gemini", "GitHub webhooks"],
+  links: { repo: "https://github.com/mohitagarwal24/gitcraft", live: "https://gitcraft-gamma.vercel.app" },
+  home: true,
+  featured: true,
+  order: 2,
+  cover: { image: "/work/gitcraft/live.webp" },
+  metrics: [
+    { value: "1st", label: "Craft Winter Challenge" },
+    { value: "38", label: "Commits" },
+    { value: "Live", label: "Still maintained" },
+  ],
+  gallery: [{ src: "/work/gitcraft/live.webp", caption: "Landing page and GitHub onboarding." }],
+};
+
+## The problem
+
+Docs go stale the week after they're written. Nobody updates the architecture page when they merge a PR.
+
+## What I built
+
+GitCraft listens to a repo through GitHub webhooks, reads what changed with an LLM, and writes the result into Craft over MCP: specs, architecture decision records and release notes. Sign-in is GitHub OAuth and it runs on Render and Vercel.
+
+## The hard part
+
+Rewriting docs on every commit buried readers in noise. I added a check that skips trivial commits, grades the rest as major, minor or patch, and only writes release notes for major changes.
+
+Models also kept returning JSON that was almost valid, which broke the pipeline. I added a recovery path in three steps so a bad response degrades gracefully instead of failing the run.
+
+## Result
+
+First place in the Craft Winter Challenge 2025. I still maintain it.

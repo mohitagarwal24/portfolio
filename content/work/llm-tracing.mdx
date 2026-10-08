@@ -1,0 +1,39 @@
+export const meta = {
+  code: "LT-03",
+  name: "Local LLM Tracing & Replay",
+  summary: "See inside a local LLM while it runs: per-layer timing, live attention heatmaps and numerical errors, for any GGUF model, without touching the model.",
+  when: "Jun 2026 · GDSC",
+  year: 2026,
+  crew: "Solo",
+  status: "Research",
+  domain: ["AI", "Systems"],
+  stack: ["C++17", "llama.cpp", "FTXUI", "CMake"],
+  links: { repo: "https://github.com/mohitagarwal24/Local-LLM-Instrumentation-Tracing-and-Replay-Platform" },
+  home: true,
+  featured: true,
+  order: 3,
+  cover: { art: "attention" },
+  metrics: [
+    { value: "5", label: "Model families" },
+    { value: "0", label: "Model changes" },
+    { value: "C++17", label: "~2.2k lines" },
+  ],
+};
+
+## The problem
+
+Running Llama or Mistral locally is easy. Seeing what happens inside, which layer is slow, where attention goes, where a NaN first appears, is not.
+
+## What I built
+
+A tracer that hooks into llama.cpp's graph callback, so it works with any GGUF model (Llama, Mistral, Qwen, Gemma, Phi) without changing a line of model code. It times every layer, pulls out attention matrices and shows them as a live heatmap you can switch head by head, and logs NaN, Inf and outlier activations.
+
+Runs can be recorded to a binary trace and replayed later without the model. Everything shows up in a five-panel terminal UI with vim keys.
+
+## The hard part
+
+Collecting events from inside inference without slowing it down. I used a lock-free ring buffer so the hot path never waits on the UI.
+
+## Result
+
+About 2,200 lines of C++17 in six days, in eleven small commits, building on Linux and Windows.

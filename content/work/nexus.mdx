@@ -1,0 +1,17 @@
+export const meta = {
+  code: "NX-10",
+  name: "Nexus",
+  summary: "Open-source collaboration where maintainers and contributors both stake, and an AI agent turns a repo into well-scoped issues.",
+  when: "Nov – Dec 2025",
+  year: 2025,
+  crew: "Solo",
+  status: "Shipped",
+  domain: ["Web3", "AI"],
+  stack: ["Foundry", "OpenZeppelin", "ADK-TS", "MCP", "Next.js"],
+  links: { repo: "https://github.com/mohitagarwal24/Nexus" },
+  order: 10,
+  cover: { art: "network" },
+  gallery: [{ src: "/work/nexus/diagram-flow.webp", caption: "From repo analysis to staked, verified contributions.", kind: "diagram" }],
+};
+
+A Foundry contract handles two-sided staking and slashing, so both sides have something to lose. The agent, built with IQAI's ADK-TS and a GitHub MCP client, reads the repo and drafts issues. Helix was the earlier version, with a Python agent.

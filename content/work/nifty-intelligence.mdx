@@ -1,0 +1,37 @@
+export const meta = {
+  code: "NF-04",
+  name: "NIFTY-50 Investment Intelligence",
+  summary: "Stock forecasts, portfolio construction and risk for India's NIFTY-50, tested honestly on data the model never saw.",
+  when: "May – Jun 2026",
+  year: 2026,
+  crew: "Solo",
+  status: "Shipped",
+  domain: ["Quant", "AI"],
+  stack: ["Python", "LightGBM", "SHAP", "GARCH", "FastAPI", "React"],
+  links: { repo: "https://github.com/mohitagarwal24/Data-Driven-Investment-Intelligence-using-NIFTY-50-Market-Data" },
+  home: true,
+  featured: true,
+  order: 4,
+  cover: { art: "equity" },
+  metrics: [
+    { value: "18.7%", label: "CAGR out of sample" },
+    { value: "0.52", label: "Sharpe vs 0.39" },
+    { value: "49", label: "Stocks" },
+  ],
+};
+
+## The problem
+
+Most stock-prediction projects look great because they quietly test on data the model has already seen. I wanted numbers I would actually trust.
+
+## What I built
+
+LightGBM models that forecast 1, 5 and 21 days ahead across 49 stocks, validated with purged, embargoed walk-forward splits so nothing leaks from the future. On top of that: mean-variance and HRP portfolios, GARCH volatility, VaR and CVaR, SHAP explanations and anomaly detection, served through FastAPI and React.
+
+## The hard part
+
+Being honest about the edge. The daily signal is small (rank IC around +0.02 to +0.04), and I report it that way instead of dressing it up.
+
+## Result
+
+Over 518,000 out-of-sample predictions. A simple top-quintile strategy returned 18.7% a year with a Sharpe of 0.52, against 14.8% and 0.39 for an equal-weight benchmark, after 15 bps of costs.

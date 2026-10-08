@@ -1,0 +1,32 @@
+export const meta = {
+  code: "OP-05",
+  name: "Stochastic Option Pricing",
+  summary: "Four option-pricing models fitted to NIFTY 50, compared head to head, with fast FFT pricing.",
+  when: "Jan – Apr 2026",
+  year: 2026,
+  crew: "Team of 3",
+  status: "Research",
+  domain: ["Quant"],
+  stack: ["Python", "Maximum likelihood", "FFT", "Stochastic volatility"],
+  links: { repo: "https://github.com/mohitagarwal24/LBP" },
+  featured: true,
+  order: 5,
+  cover: { art: "smile" },
+  metrics: [
+    { value: "4", label: "Models" },
+    { value: "1,721", label: "Daily returns" },
+    { value: "Bates", label: "Best fit" },
+  ],
+};
+
+## The problem
+
+Black–Scholes assumes markets move smoothly. They don't, and the cost shows up most in out-of-the-money puts.
+
+## What I built
+
+As a lab project with two classmates, I implemented Black–Scholes, Merton jump-diffusion, Heston and Bates, and calibrated each by maximum likelihood on 1,721 daily NIFTY 50 returns from 2018 to 2024. Pricing uses convolution FFT following Gao & Hyndman (2025), with an error-bound analysis.
+
+## Result
+
+Bates fit best on both AIC and BIC. Black–Scholes underpriced out-of-the-money puts by 20% to over 100%.

@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local review artifacts and original headshot
+/artifacts/
+/public/about/portrait-source.*

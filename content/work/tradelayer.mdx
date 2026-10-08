@@ -1,0 +1,52 @@
+export const meta = {
+  code: "TL-01",
+  name: "TradeLayer",
+  summary: "A trading protocol that lets institutions buy real stocks with crypto without putting their orders, holdings or identity on-chain.",
+  when: "Sep 2026 · ETHOnline",
+  year: 2026,
+  crew: "Solo",
+  status: "Flagship",
+  domain: ["Web3", "Systems"],
+  stack: ["Solidity", "Chainlink CRE", "AWS Nitro TEE", "Hedera", "TypeScript", "React"],
+  links: {
+    repo: "https://github.com/mohitagarwal24/TradeLayer",
+    live: "https://trade-layer-nextjs.vercel.app",
+    docs: "https://helix-5.gitbook.io/tradelayer",
+    video: "https://vimeo.com/1226318363",
+  },
+  home: true,
+  featured: true,
+  order: 1,
+  cover: { art: "enclave" },
+  metrics: [
+    { value: "87", label: "Foundry tests" },
+    { value: "5", label: "Verified contracts" },
+    { value: "1:1", label: "Broker-backed tokens" },
+  ],
+  gallery: [
+    { src: "/work/tradelayer/live.webp", caption: "The app: an institution connects and gets onboarded before it can trade." },
+    { src: "/work/tradelayer/diagram-flow.webp", caption: "Order flow from the browser to settlement.", kind: "diagram" },
+    { src: "/work/tradelayer/diagram-onboarding.webp", caption: "Institution onboarding and KYC on Hedera.", kind: "diagram" },
+    { src: "/work/tradelayer/diagram-sequence.webp", caption: "Full sequence across browser, enclave, contracts and broker.", kind: "diagram" },
+  ],
+};
+
+## The problem
+
+Institutions want to hold tokenised stocks, but on a public chain everyone can see what they buy and how much. That is a deal-breaker for anyone managing real money.
+
+## What I built
+
+Orders are encrypted in the browser and only opened inside a secure enclave, so neither my backend nor the chain ever sees them in plain text. The enclave checks each order against the institution's rules, places it with a real broker (Alpaca, paper trading), and settles trades in netted batches so individual orders don't show up on-chain. Every token is backed one-to-one by a share at the broker.
+
+On the chain side there are five Solidity contracts on Hedera testnet, covering wallet registry, compliance, a pooled vault, escrow and a private ledger, plus tokenised equities with KYC and freeze controls.
+
+## The hard part
+
+My first version let the backend read every order. That defeated the whole point, so halfway through the hackathon I threw it away and rebuilt the core around the enclave.
+
+I also hit a bug in Chainlink's beta: confidential HTTP responses carried per-request headers, so the nodes never agreed on a result. I measured it, worked around it, reported it to Chainlink, and wrote the limitation into the docs.
+
+## Result
+
+Built solo in nine days, with 87 Foundry tests (12 of them proving one institution can't see another's data) and a written threat model that says plainly what is trusted and what isn't.
