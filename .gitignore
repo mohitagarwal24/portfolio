@@ -42,4 +42,5 @@ next-env.d.ts
 
 # Local review artifacts and original headshot
 /artifacts/
+/sample-images/
 /public/about/portrait-source.*

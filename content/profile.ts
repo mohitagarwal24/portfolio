@@ -1,7 +1,7 @@
 // Copy written in Mohit's voice: plain, direct, short sentences, real numbers.
 export const profile = {
   role: "Software Engineer",
-  title: "Mission Specialist",
+  title: "Software Engineer",
   status: "Incoming SDE Intern @ Microsoft",
   tagline: ["I build software end to end,", "and I like the hard parts."],
   homeIntro:
@@ -14,9 +14,9 @@ export const profile = {
   workIntro: "Things I've built, mostly solo and mostly at hackathons or for a club. Most of them link to the code.",
   contactLine: "Email is the fastest way to reach me.",
   stats: [
-    { value: 1742, decimals: 0, prefix: "", suffix: "", label: "Codeforces max · Expert" },
+    { value: 1644, decimals: 0, prefix: "", suffix: "", label: "Codeforces max · Expert" },
     { value: 4, decimals: 0, prefix: "", suffix: "", label: "Hackathon wins" },
     { value: 7, decimals: 0, prefix: "", suffix: "", label: "Merged open-source PRs" },
-    { value: 138, decimals: 0, prefix: "#", suffix: "", label: "IMC Prosperity 4 · of ~22,000" },
+    { value: 138, decimals: 0, prefix: "#", suffix: "", label: "IMC Prosperity 4 · Mission 1 of ~22,000" },
   ],
 } as const;

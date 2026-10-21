@@ -1,7 +1,7 @@
 export const meta = {
   code: "LT-03",
   name: "Local LLM Tracing & Replay",
-  summary: "See inside a local LLM while it runs: per-layer timing, live attention heatmaps and numerical errors, for any GGUF model, without touching the model.",
+  summary: "Inspect local llama.cpp inference with per-layer timing, attention heatmaps, numerical anomaly detection and model-free trace replay.",
   when: "Jun 2026 · GDSC",
   year: 2026,
   crew: "Solo",
@@ -14,7 +14,7 @@ export const meta = {
   order: 3,
   cover: { art: "attention" },
   metrics: [
-    { value: "5", label: "Model families" },
+    { value: "5", label: "Terminal panels" },
     { value: "0", label: "Model changes" },
     { value: "C++17", label: "~2.2k lines" },
   ],
@@ -26,7 +26,7 @@ Running Llama or Mistral locally is easy. Seeing what happens inside, which laye
 
 ## What I built
 
-A tracer that hooks into llama.cpp's graph callback, so it works with any GGUF model (Llama, Mistral, Qwen, Gemma, Phi) without changing a line of model code. It times every layer, pulls out attention matrices and shows them as a live heatmap you can switch head by head, and logs NaN, Inf and outlier activations.
+A tracer that hooks into llama.cpp's graph callback without changing model source code. It records per-layer timing, extracts attention matrices from `kq_soft_max` tensors, shows a heatmap you can switch head by head, and logs NaN, Inf and outlier activations. Compatibility depends on the model and graph structure; universal support across GGUF architectures has not been established.
 
 Runs can be recorded to a binary trace and replayed later without the model. Everything shows up in a five-panel terminal UI with vim keys.
 

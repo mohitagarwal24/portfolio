@@ -1,23 +1,40 @@
 import type { Metadata } from "next";
-import { work } from "@/lib/work";
-import { SceneCue } from "@/components/scene/SceneCue";
-import { AltitudeMeter } from "@/components/hud/AltitudeMeter";
-import { Hero } from "@/components/sections/Hero";
-import { HomeIntro } from "@/components/sections/HomeIntro";
-import { Featured } from "@/components/sections/Featured";
-import { toCard } from "@/components/work/toCard";
-
+import { getWork, work } from "@/lib/work";
+import { Portfolio } from "@/components/portfolio/Portfolio";
 export const metadata: Metadata = { alternates: { canonical: "/" } };
-
 export default function Home() {
-  const featured = work.filter((w) => w.home).slice(0, 4).map(toCard);
-  return (
-    <>
-      <SceneCue />
-      <AltitudeMeter />
-      <Hero />
-      <HomeIntro />
-      <Featured work={featured} total={work.length} />
-    </>
+  const projects = work.map(
+    ({
+      slug,
+      name,
+      summary,
+      when,
+      crew,
+      domain,
+      stack,
+      links,
+      metrics,
+      award,
+      gallery,
+    }) => ({
+      slug,
+      name,
+      summary,
+      when,
+      crew,
+      domain,
+      stack,
+      links,
+      metrics,
+      award,
+      gallery,
+    }),
   );
+  const reports = Object.fromEntries(
+    work.map((project) => {
+      const { Body } = getWork(project.slug)!;
+      return [project.slug, <Body key={project.slug} />];
+    }),
+  );
+  return <Portfolio projects={projects} reports={reports} />;
 }

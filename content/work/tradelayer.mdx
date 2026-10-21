@@ -1,7 +1,7 @@
 export const meta = {
   code: "TL-01",
   name: "TradeLayer",
-  summary: "A trading protocol that lets institutions buy real stocks with crypto without putting their orders, holdings or identity on-chain.",
+  summary: "A confidential trading prototype on Hedera testnet, with encrypted order workflows, local enclave simulation and Alpaca paper trading.",
   when: "Sep 2026 · ETHOnline",
   year: 2026,
   crew: "Solo",
@@ -37,7 +37,9 @@ Institutions want to hold tokenised stocks, but on a public chain everyone can s
 
 ## What I built
 
-Orders are encrypted in the browser and only opened inside a secure enclave, so neither my backend nor the chain ever sees them in plain text. The enclave checks each order against the institution's rules, places it with a real broker (Alpaca, paper trading), and settles trades in netted batches so individual orders don't show up on-chain. Every token is backed one-to-one by a share at the broker.
+The design encrypts orders in the browser, with policy checks and broker execution intended to happen inside a secure enclave. The demonstrated implementation uses local CRE/enclave simulation and Alpaca paper trading. It implements institution policies, broker reconciliation and netted batch settlement, targeting one-to-one backing by paper broker shares.
+
+Live confidential DON execution remained blocked by a Chainlink CRE consensus issue. Production remote attestation and key-release guarantees are not established by this prototype.
 
 On the chain side there are five Solidity contracts on Hedera testnet, covering wallet registry, compliance, a pooled vault, escrow and a private ledger, plus tokenised equities with KYC and freeze controls.
 
